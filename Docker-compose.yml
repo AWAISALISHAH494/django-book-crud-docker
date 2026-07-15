@@ -1,0 +1,31 @@
+version : "3"
+services:
+  posgres:
+    image: postgres:15
+    container_name: books_db
+    networks:
+     - mybooks
+    ports:
+     - 5431:5432
+    environment:
+      POSTGRES_USER: awais_books 
+      POSTGRES_DB: books_db 
+      POSTGRES_PASSWORD: books8900
+  
+  pgadmin:
+    image: dpage/pgadmin4:snapshot
+    container_name: books_admin
+    networks:
+      - mybooks
+    ports:
+    - 9001:80
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: books8900 
+      PGADMIN_DEFAULT_EMAIL: booksweb@xyz.com
+
+
+networks:
+  mybooks:
+    external : true
+
+
